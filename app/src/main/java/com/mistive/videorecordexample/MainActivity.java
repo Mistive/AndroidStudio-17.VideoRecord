@@ -9,6 +9,7 @@ import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
                                 //비디오 소스에 카메라를 넣어줘라?
                                 mediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
                                 //동영상 녹화 화질 관련 구문 *****
-                                mediaRecorder.setProfile(CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH));
+                                mediaRecorder.setProfile(CamcorderProfile.get(CamcorderProfile.QUALITY_720P));
                                 //촬영 각도 설정
                                 mediaRecorder.setOrientationHint(90);
                                 //저장 경로 sdcard: Phone의 root 경로
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
                                 mediaRecorder.start();
                                 recording=true;
                             } catch (Exception e){
+                                Log.e("MainActivity","Thread에서 에러 발생");
                                 e.printStackTrace();
                                 mediaRecorder.release();
                             }
